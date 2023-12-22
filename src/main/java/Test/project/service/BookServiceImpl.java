@@ -41,6 +41,13 @@ public class BookServiceImpl implements BookService {
         }
 
     @Override
+    public List<Book> getBookByAuthorId(Long author_id) {
+        Author author = aRepository.findById(author_id).orElseThrow();
+        List<Book> books = author.getBooks();
+        return books;
+    }
+
+    @Override
     public Book updateBook(Book book, Long bookId) {
         Book book1 = this.bRepository.findById(bookId)
                 .orElseThrow();

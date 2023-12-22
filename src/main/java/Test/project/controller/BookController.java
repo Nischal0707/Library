@@ -22,7 +22,10 @@ public class BookController {
     public List<Book> getBook() {
         return bService.getBook();
     }
-
+    @GetMapping("/book/{author_id}")
+    public List<Book> getBookByAuthorId(@PathVariable Long author_id) {
+        return bService.getBookByAuthorId(author_id);
+    }
     @GetMapping("/books/{id}")
     public Book getBook(@PathVariable("id") Long id) {
         return bService.getSingleBook(id);

@@ -1,5 +1,6 @@
 package Test.project.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,5 +24,6 @@ public class Author {
     private String name;
 
     @OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<Book> books;
 }
