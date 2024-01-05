@@ -1,13 +1,18 @@
 package Test.project.controller;
 
+import Test.project.dto.ApiResponse;
+import Test.project.dto.UserDto;
 import Test.project.model.User;
 import Test.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
@@ -22,7 +27,7 @@ public class UserController {
         return "Fetching the user details for the id"+id;
     }
 
-    @PostMapping("/user")
+    @PostMapping("/addUser")
     public User saveUser (@RequestBody User user){
         return uService.saveUser(user);
     }
@@ -36,6 +41,15 @@ public class UserController {
     @DeleteMapping("/users")
     public void deleteUser (@RequestParam Long id){
         uService.deleteUser(id);
+    }
+    @PostMapping("/addUserDto")
+    public UserDto addUser (@RequestBody UserDto userDto){
+        return uService.registerNewUser(userDto);
+    }
+
+    @GetMapping("/users")
+    public ResponseEntity<List<UserDto>> getAllUsers() {
+        return ResponseEntity.ok(this.uService.getAllUsers());
     }
 
 }

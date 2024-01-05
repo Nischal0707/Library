@@ -26,12 +26,12 @@ public class BookController {
     public List<Book> getBookByAuthorId(@PathVariable Long author_id) {
         return bService.getBookByAuthorId(author_id);
     }
-    @GetMapping("/books/{id}")
+    @GetMapping("/book/books/{id}")
     public Book getBook(@PathVariable("id") Long id) {
         return bService.getSingleBook(id);
     }
 
-    @PutMapping("/books/{id}")
+    @PutMapping("/book/books/{id}")
     public Book updateBook(@PathVariable Long id, @RequestBody Book book) {
         System.out.println("updating the book data for the id" + id);
         return bService.updateBook(book, id);
